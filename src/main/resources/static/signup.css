@@ -1,0 +1,127 @@
+/* ==========================================================
+   Signup Page - Ethereal Midnight Overrides
+   Extends the premium design system with signup components.
+   ========================================================== */
+
+/* --- Password Strength Indicator --- */
+.password-strength {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 10px;
+    background: rgba(var(--ds-gray-100-rgb), 0.5);
+    border-radius: 12px;
+}
+
+.password-strength[hidden] {
+    display: none;
+}
+
+.strength-bars {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+}
+
+.strength-bar {
+    height: 6px;
+    flex: 1;
+    border-radius: var(--ds-radius-full);
+    background: var(--ds-gray-200);
+    transition: all 0.4s var(--ds-ease-out);
+}
+
+
+
+.strength-bar.active-weak {
+    background: #f87171;
+    box-shadow: 0 0 10px rgba(248, 113, 113, 0.3);
+}
+
+.strength-bar.active-fair {
+    background: #fbbf24;
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+.strength-bar.active-good {
+    background: #34d399;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+}
+
+.strength-bar.active-strong {
+    background: #10b981;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.strength-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    min-width: 50px;
+    text-align: right;
+    color: var(--ds-gray-400);
+}
+
+/* --- Rules Checklist --- */
+.password-rules {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ds-gray-500);
+    transition: all 0.3s ease;
+}
+
+.rule-icon {
+    font-size: 0.4rem;
+    color: var(--ds-gray-300);
+    transition: all 0.3s var(--ds-ease-out);
+}
+
+.rule.rule-pass {
+    color: var(--ds-gray-900);
+}
+
+
+
+.rule.rule-pass .rule-icon {
+    color: #10b981;
+    transform: scale(1.5);
+}
+
+.rule.rule-fail {
+    color: #f87171;
+}
+
+.rule.rule-fail .rule-icon {
+    color: #f87171;
+}
+
+.terms-text {
+    font-size: 0.8rem;
+    color: var(--ds-gray-500);
+    text-align: center;
+    margin-top: 12px;
+}
+
+.terms-link {
+    color: var(--ds-primary-500);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}

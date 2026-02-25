@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AI SaaS Platform</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23a855f7;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm0 4c5.523 0 10 4.477 10 10s-4.477 10-10 10S6 21.523 6 16 10.477 6 16 6zm-3 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-6 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-3 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z' fill='url(%23grad)' /%3E%3C/svg%3E">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Theme: prevent FOUC -->
+
+
+    <!-- Admin Guard -->
+    <script>
+        (function () {
+            let user = null;
+
+            try {
+                user = JSON.parse(localStorage.getItem('user'));
+            } catch (e) {
+                user = null;
+            }
+
+            // Not logged in
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Logged in but not admin
+            if (user.role !== 'ADMIN') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+        })();
+    </script>
+
+
+
+</head>
+
+<body>
+    <!-- Premium Backdrop Shapes -->
+    <div class="backdrop-shapes">
+        <div class="backdrop-orb orb-1"></div>
+        <div class="backdrop-orb orb-2"></div>
+        <div class="backdrop-orb orb-3"></div>
+        <!-- Futuristic Glow Particles -->
+        <div class="glow-particle p-1"></div>
+        <div class="glow-particle p-2"></div>
+        <div class="glow-particle p-3"></div>
+        <div class="glow-particle p-4"></div>
+        <div class="glow-particle p-5"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <span class="logo-text">AI<span class="logo-accent">Helper</span></span>
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-item active" data-target="dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </div>
+            <div class="nav-item" data-target="users">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </div>
+            <div class="nav-item" data-target="requests">
+                <i class="fa-solid fa-server"></i>
+                <span>AI Requests</span>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="admin-avatar" id="sidebar-avatar">A</div>
+                <div class="admin-info">
+                    <span class="admin-name" id="admin-name">Rama Manoj</span>
+                    <span class="admin-role">System Administrator</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <!-- Mobile Toggle (Visible only on mobile via CSS) -->
+        <button id="sidebar-toggle" style="display: none; margin-bottom: 20px;">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- DASHBOARD / ANALYTICS SECTION -->
+        <section id="section-dashboard" class="admin-section">
+            <div class="admin-header" style="margin-bottom: 40px;">
+                <div>
+                    <h1 class="page-title">Dashboard Overview</h1>
+                    <p class="page-subtitle" style="margin-top: 8px; opacity: 0.7;">Platform performance and usage
+                        statistics.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Stat Card 1 -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Users</span>
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-total-users">0</div>
+                    <div class="stat-trend">
+                        <span class="trend-up"><i class="fa-solid fa-arrow-up"></i> 5%</span>
+                        <span class="trend-label">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total AI Requests</span>
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-total-requests">0</div>
+                    <div class="stat-trend">
+                        <span class="trend-up"><i class="fa-solid fa-arrow-up"></i> 12%</span>
+                        <span class="trend-label">vs last month</span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Admins</span>
+                        <div class="stat-icon" style="background-color: #fef3c7; color: #d97706;">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-total-admins">0</div>
+                    <div class="stat-trend">
+                        <span style="color: #6b7280; font-size: 0.8rem;">System Administrators</span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 4 -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Normal Users</span>
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-total-normal-users">0</div>
+                    <div class="stat-trend">
+                        <span class="trend-label">Regular Accounts</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USERS SECTION -->
+        <section id="section-users" class="admin-section hidden">
+            <div class="admin-header" style="margin-bottom: 40px;">
+                <div>
+                    <h1 class="page-title">User Management</h1>
+                    <p class="page-subtitle" style="margin-top: 8px; opacity: 0.7;">View and manage registered users.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="content-card">
+                <div class="loading-spinner" id="users-loading" style="margin: 40px auto; display: none;"></div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" id="user-pagination">
+                    <div class="pagination-info">Showing <span id="start-count">0</span> to <span
+                            id="end-count">0</span> of <span id="total-count">0</span> users</div>
+                    <div class="pagination-controls">
+                        <button class="page-btn" id="prev-page" disabled><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <div id="page-numbers" style="display: flex; gap: 4px;"></div>
+                        <button class="page-btn" id="next-page" disabled><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI REQUESTS SECTION -->
+        <section id="section-requests" class="admin-section hidden">
+            <div class="admin-header" style="margin-bottom: 40px;">
+                <div>
+                    <h1 class="page-title">AI Request Logs</h1>
+                    <p class="page-subtitle" style="margin-top: 8px; opacity: 0.7;">Monitor and audit AI text processing
+                        activities.</p>
+                </div>
+            </div>
+
+
+            <div class="content-card">
+                <div class="loading-spinner" id="requests-loading" style="margin: 40px auto; display: none;"></div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User Email</th>
+                                <th>Action Type</th>
+                                <th>Created At</th>
+                                <th class="text-right">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requests-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container" id="request-pagination">
+                    <div class="pagination-info">Showing <span id="req-start-count">0</span> to <span
+                            id="req-end-count">0</span> of <span id="req-total-count">0</span> requests</div>
+                    <div class="pagination-controls">
+                        <button class="page-btn" id="req-prev-page" disabled><i
+                                class="fa-solid fa-chevron-left"></i></button>
+                        <div id="req-page-numbers" style="display: flex; gap: 4px;"></div>
+                        <button class="page-btn" id="req-next-page" disabled><i
+                                class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="admin-overlay" id="admin-overlay"></div>
+
+    <script src="app.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Admin Sidebar Toggle Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.getElementById('admin-sidebar');
+            const overlay = document.getElementById('admin-overlay');
+
+            if (toggle && sidebar && overlay) {
+                const toggleSidebar = (show) => {
+                    sidebar.classList.toggle('active', show);
+                    overlay.classList.toggle('active', show);
+                    document.body.style.overflow = show ? 'hidden' : '';
+                };
+
+                toggle.addEventListener('click', () => toggleSidebar(true));
+                overlay.addEventListener('click', () => toggleSidebar(false));
+
+                // Close on nav item click on mobile
+                const items = sidebar.querySelectorAll('.nav-item');
+                items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        if (window.innerWidth <= 768) {
+                            toggleSidebar(false);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- Request Details Modal -->
+    <div class="modal" id="request-detail-modal" aria-hidden="true">
+        <div class="modal-overlay" tabindex="-1"></div>
+        <div class="modal-container" style="max-width: 600px;">
+            <button class="modal-close" data-close="true" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-content" style="text-align: left;">
+                <h2 class="modal-title" style="margin-bottom: 24px;">Request Details</h2>
+
+                <div class="detail-row">
+                    <div class="detail-item">
+                        <span class="detail-label">User</span>
+                        <div id="detail-user" style="font-weight: 500;">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date</span>
+                        <div id="detail-date">-</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Action</span>
+                        <div id="detail-action">-</div>
+                    </div>
+                </div>
+
+                <div class="detail-group">
+                    <span class="detail-label">Input Text</span>
+                    <div id="detail-input" class="detail-content"></div>
+                </div>
+
+                <div class="detail-group">
+                    <span class="detail-label">AI Output</span>
+                    <div id="detail-output" class="detail-content"></div>
+                </div>
+
+                <div class="admin-modal-actions">
+                    <button class="btn-secondary" data-close="true">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="admin-modal" aria-hidden="true">
+        <div class="modal-overlay" tabindex="-1"></div>
+        <div class="modal-container">
+            <button class="modal-close" data-close="true" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-icon" style="background: #fef2f2; color: #dc2626;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h2 class="modal-title" id="admin-modal-title">Confirm Action</h2>
+                <p class="modal-description" id="admin-modal-desc">
+                    Are you sure you want to proceed? This action cannot be undone.
+                </p>
+                <div class="admin-modal-actions">
+                    <button class="btn-secondary" data-close="true">Cancel</button>
+                    <button class="btn-danger" id="admin-modal-confirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="design-system.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+
+
+</body>
+
+</html>

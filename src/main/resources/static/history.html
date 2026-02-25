@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI History - AI Text Helper</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23a855f7;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm0 4c5.523 0 10 4.477 10 10s-4.477 10-10 10S6 21.523 6 16 10.477 6 16 6zm-3 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-6 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm6 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-3 3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z' fill='url(%23grad)' /%3E%3C/svg%3E">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="design-system.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Inline Guard -->
+    <script>
+        (function () {
+            var user = null;
+            try { user = JSON.parse(localStorage.getItem('user')); } catch (e) { }
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Premium Backdrop Shapes -->
+    <div class="backdrop-shapes">
+        <div class="backdrop-orb orb-1"></div>
+        <div class="backdrop-orb orb-2"></div>
+        <div class="backdrop-orb orb-3"></div>
+        <!-- Futuristic Glow Particles -->
+        <div class="glow-particle p-1"></div>
+        <div class="glow-particle p-2"></div>
+        <div class="glow-particle p-3"></div>
+        <div class="glow-particle p-4"></div>
+        <div class="glow-particle p-5"></div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="logo-icon"><i class="fa-solid fa-brain"></i></div>
+                <span class="logo-text">AI<span class="logo-accent">Helper</span></span>
+            </a>
+            <ul class="navbar-links" id="navbar-links"></ul> <!-- Dynamic -->
+
+            <button class="navbar-toggle" id="navbar-toggle">
+                <span class="toggle-bar"></span><span class="toggle-bar"></span><span class="toggle-bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="app-card">
+            <header class="history-hero">
+                <div class="hero-inner">
+                    <h1 class="gradient-text">Interaction Vault</h1>
+                    <p class="hero-subtitle">Your personal archive of AI-powered insights and professional refinements.
+                    </p>
+
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span class="stat-value" id="stats-total">0</span>
+                            <span class="stat-label">Total Interactions</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="stats-weekly">0</span>
+                            <span class="stat-label">This Week</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="stats-last">Just now</span>
+                            <span class="stat-label">Last Active</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <hr class="hero-divider">
+
+
+
+            <div class="history-content-wrap">
+                <!-- SaaS Toolbar -->
+                <div class="history-toolbar">
+                    <div class="search-input-wrap">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="history-search" class="search-field"
+                            placeholder="Search prompts, responses, or actions...">
+                    </div>
+                    <!-- Top Pagination (Mini) -->
+                    <div class="pagination-controls mini" id="history-pg-controls-top"></div>
+                </div>
+
+                <!-- List -->
+                <div id="full-history-list" class="history-list">
+                    <!-- JS will populate this -->
+                </div>
+
+                <!-- Pagination Bar -->
+                <div class="pagination-bar" id="history-pagination">
+                    <div class="pagination-info" id="history-pg-info">
+                        Showing 0 to 0 of 0 records
+                    </div>
+                    <div class="pagination-controls" id="history-pg-controls">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+
+                <!-- Loader -->
+                <div id="history-loading" class="is-hidden" style="text-align: center; margin-top: 48px;">
+                    <div class="loading-spinner" style="margin: 0 auto;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <div class="logo-icon"><i class="fa-solid fa-brain"></i></div>
+                    <span class="logo-text">AI<span class="logo-accent">Helper</span></span>
+                </a>
+                <p class="footer-tagline">Intelligent writing assistant powered by advanced AI and modern research.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Product</h4>
+                    <a href="index.html">AI Tools</a>
+                    <a href="history.html">History</a>
+                    <a href="account.html">Account</a>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AI Text Helper. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- ========== END FOOTER ========== -->
+
+    <script src="app.js"></script>
+    <script src="history.js"></script>
+    <script>
+        (function () {
+
+
+            // Mobile Menu Toggle
+            var navToggle = document.getElementById('navbar-toggle');
+            var navLinks = document.getElementById('navbar-links');
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function () {
+                    var isExp = navToggle.getAttribute('aria-expanded') === 'true';
+                    navToggle.setAttribute('aria-expanded', !isExp);
+                    navLinks.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+        })()
+    </script>
+</body>
+
+</html>
