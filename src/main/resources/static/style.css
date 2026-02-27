@@ -1,55 +1,81 @@
 .backdrop {
-  /* backdrop shapes */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+  opacity: 0.8;
 }
 
 .navbar {
-  /* navbar styles */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
 }
 
-.chat-layout {
-  /* chat layout styles */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 20px;
 }
 
-.input-system {
-  /* input system styles */
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  overflow-y: auto;
 }
 
-/* Media Queries */
-/* Tablets (768px) */
+.chat-message {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+}
+
+.landing-page {
+  text-align: center;
+  padding: 50px;
+}
+
 @media (max-width: 768px) {
-  .sidebar-drawer {
-    /* sidebar drawer adjustments */
+  .navbar {
+    flex-direction: column;
   }
-  .hamburger-menu {
-    /* hamburger menu adjustments */
+  .chat {
+    height: 60vh;
   }
-  .responsive-text {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+  .landing-page {
+    padding: 30px;
   }
 }
 
-/* Mobile Devices (480px) */
 @media (max-width: 480px) {
-  .chat-bubble {
-    /* adjustments for chat bubbles */
+  .navbar a {
+    padding: 10px;
   }
-  .input-area {
-    /* optimization for input areas */
-  }
-  overflow-handling {
-    /* ensure overflow handling */
+  .chat-message {
+    margin: 5px;
+    padding: 5px;
   }
 }
 
-/* Extra Small Screens (360px) */
 @media (max-width: 360px) {
-  .sidebar-drawer {
-    /* adjustments for small sidebars */
-  }
-  .hamburger-menu {
-    /* adjustments for hamburger menu */
-  }
-  .responsive-text {
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
+  .landing-page {
+    font-size: 14px;
   }
 }
