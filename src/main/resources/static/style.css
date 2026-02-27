@@ -1,36 +1,55 @@
-.container {
-  max-width: 100%;
-  padding: 0 15px;
+.backdrop {
+  /* backdrop shapes */
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navbar {
+  /* navbar styles */
 }
 
-.nav {
-  display: flex;
-  flex-direction: column;
+.chat-layout {
+  /* chat layout styles */
 }
 
-.main {
-  flex-grow: 1;
+.input-system {
+  /* input system styles */
 }
 
-.footer {
-  text-align: center;
-}
-
-/* Media Queries for Mobile Devices */
-@media only screen and (max-width: 768px) {
-  .header {
-    flex-direction: column;
+/* Media Queries */
+/* Tablets (768px) */
+@media (max-width: 768px) {
+  .sidebar-drawer {
+    /* sidebar drawer adjustments */
   }
-  .nav {
-    align-items: center;
+  .hamburger-menu {
+    /* hamburger menu adjustments */
   }
-  .main {
-    padding: 10px;
+  .responsive-text {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
+}
+
+/* Mobile Devices (480px) */
+@media (max-width: 480px) {
+  .chat-bubble {
+    /* adjustments for chat bubbles */
+  }
+  .input-area {
+    /* optimization for input areas */
+  }
+  overflow-handling {
+    /* ensure overflow handling */
+  }
+}
+
+/* Extra Small Screens (360px) */
+@media (max-width: 360px) {
+  .sidebar-drawer {
+    /* adjustments for small sidebars */
+  }
+  .hamburger-menu {
+    /* adjustments for hamburger menu */
+  }
+  .responsive-text {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
   }
 }
