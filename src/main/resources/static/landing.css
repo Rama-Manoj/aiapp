@@ -1,0 +1,298 @@
+/* ==========================================================
+   LANDING.CSS — Landing / About Page Only
+   Requires: design-system.css → base.css → landing.css
+   ========================================================== */
+
+/* ── 1. HERO SECTION ─────────────────────────────────────── */
+#landing-hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: var(--ds-space-12) 5%;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--ds-radius-full);
+    color: var(--ds-primary-500);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: var(--ds-space-8);
+    animation: ds-reveal 0.6s var(--ds-ease-out);
+}
+
+@keyframes ds-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-family: var(--ds-font-display);
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--ds-space-6);
+    background: linear-gradient(135deg, var(--ds-gray-900) 0%, var(--ds-gray-600) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: ds-reveal 0.8s var(--ds-ease-out) 0.1s backwards;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--ds-gray-500);
+    max-width: 600px;
+    margin: 0 auto var(--ds-space-12);
+    line-height: 1.6;
+    animation: ds-reveal 0.8s var(--ds-ease-out) 0.2s backwards;
+}
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    animation: ds-reveal 0.8s var(--ds-ease-out) 0.3s backwards;
+}
+
+/* ── 2. TRUST SECTION ────────────────────────────────────── */
+.hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+    justify-content: center;
+    animation: ds-reveal 0.8s var(--ds-ease-out) 0.4s backwards;
+}
+
+.trust-avatars {
+    display: flex;
+    margin-right: -8px;
+}
+
+.trust-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid var(--ds-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: white;
+    font-size: 0.9rem;
+    margin-right: -12px;
+    box-shadow: var(--ds-shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.trust-avatar:hover {
+    transform: translateY(-4px) scale(1.1);
+    z-index: 10;
+}
+
+.trust-text {
+    font-size: 0.95rem;
+    color: var(--ds-gray-500);
+}
+
+/* ── 3. FEATURES GRID ────────────────────────────────────── */
+.features-section {
+    padding: var(--ds-space-12) 10%;
+    background: transparent;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-family: var(--ds-font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.feature-card {
+    background: var(--ds-white);
+    border: 1px solid var(--ds-gray-200);
+    border-radius: 32px;
+    padding: 40px;
+    transition: all 0.4s var(--ds-ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--ds-primary-400);
+    box-shadow: var(--ds-shadow-premium);
+}
+
+.feature-icon-box {
+    width: 56px;
+    height: 56px;
+    background: var(--ds-primary-50);
+    color: var(--ds-primary-600);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+}
+
+.feature-label {
+    font-family: var(--ds-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.feature-text {
+    font-size: 0.95rem;
+    color: var(--ds-gray-500);
+    line-height: 1.6;
+}
+
+/* ── 4. CTA SECTION ──────────────────────────────────────── */
+.cta-section {
+    padding: 120px 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes cta-gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.cta-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    background: var(--ds-gradient-primary);
+    background-size: 200% auto;
+    animation: cta-gradient-shift 8s ease-in-out infinite alternate;
+    border-radius: 40px;
+    text-align: center;
+    position: relative;
+    color: white;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+    z-index: 10;
+    overflow: hidden;
+}
+
+@keyframes cta-blur-pulse {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.1;
+    }
+
+    50% {
+        transform: translate(30px, 15px) scale(1.2);
+        opacity: 0.2;
+    }
+}
+
+.cta-blur {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cta-blur-1 {
+    top: -100px;
+    left: -100px;
+    animation: cta-blur-pulse 8s infinite alternate ease-in-out;
+}
+
+.cta-blur-2 {
+    bottom: -100px;
+    right: -100px;
+    animation: cta-blur-pulse 8s infinite alternate-reverse ease-in-out;
+}
+
+.cta-title {
+    font-family: var(--ds-font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.cta-desc {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.cta-section .btn-primary {
+    background: white !important;
+    color: var(--ds-primary-600) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cta-section .btn-primary:hover {
+    background: var(--ds-gray-50) !important;
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* ── 5. RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .feature-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}

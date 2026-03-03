@@ -1,0 +1,419 @@
+/* ==========================================================
+   HISTORY.CSS — History Page Only
+   Requires: design-system.css → base.css → history.css
+   ========================================================== */
+
+/* ── 1. HISTORY HERO ─────────────────────────────────────── */
+.history-hero {
+    position: relative;
+    padding: 48px 32px;
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent 30%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    text-align: center;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── 2. STATS ROW ────────────────────────────────────────── */
+.stats-row {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 24px;
+    border-radius: 40px;
+    gap: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--ds-gray-900);
+    font-family: var(--ds-font-display);
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ds-gray-400);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--ds-gray-200);
+}
+
+.hero-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--ds-gray-200), transparent);
+    margin: 0;
+}
+
+/* ── 3. HISTORY TOOLBAR (Search + Filters) ───────────────── */
+.history-content-wrap {
+    padding: 24px;
+}
+
+.history-toolbar {
+    margin: 24px 0;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.search-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrap i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ds-gray-400);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.search-field {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 0 16px 0 48px !important;
+    background: white !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    color: #1e293b !important;
+    outline: none !important;
+    display: block !important;
+    box-sizing: border-box !important;
+}
+
+.search-field:focus {
+    border-color: var(--ds-primary-400) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* ── 4. HISTORY LIST & CARDS ─────────────────────────────── */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.history-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+    padding: 0;
+    transition: all 0.4s var(--ds-ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.history-card:hover {
+    border-color: var(--ds-primary-300);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.history-card-main {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.card-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.card-prompt-preview {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ds-gray-900);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    color: var(--ds-gray-400);
+    font-weight: 500;
+}
+
+.card-badge {
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.card-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-card-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--ds-gray-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-card-action:hover {
+    background: var(--ds-gray-100);
+    color: var(--ds-primary-600);
+}
+
+.btn-card-delete:hover {
+    color: #ef4444 !important;
+    background: #fef2f2 !important;
+}
+
+/* ── 5. EXPAND TOGGLE ────────────────────────────────────── */
+.btn-detail-toggle {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--ds-gray-200);
+    background: var(--ds-white);
+    color: var(--ds-gray-600);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-detail-toggle:hover {
+    border-color: var(--ds-primary-400);
+    color: var(--ds-primary-600);
+    background: var(--ds-primary-50);
+}
+
+.btn-detail-toggle.active {
+    background: var(--ds-primary-50);
+    border-color: var(--ds-primary-400);
+    color: var(--ds-primary-700);
+}
+
+/* ── 6. EXPANDED CARD DETAILS ────────────────────────────── */
+.card-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleY(0.98);
+    transform-origin: top;
+    transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 400ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(248, 250, 252, 0.3);
+}
+
+.history-card.is-expanded {
+    border-color: var(--ds-primary-400);
+}
+
+.history-card.is-expanded .card-details {
+    max-height: 2000px;
+    opacity: 1;
+    transform: scaleY(1);
+    border-top: 1px solid var(--ds-gray-100);
+}
+
+.card-details-inner {
+    padding: 24px;
+    display: grid;
+    gap: 24px;
+}
+
+.detail-section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--ds-gray-400);
+    letter-spacing: 0.05em;
+}
+
+.full-text-box {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ds-gray-700);
+    white-space: pre-wrap;
+}
+
+.ai-response-box {
+    padding: 20px;
+    background: var(--ds-white);
+    border: 1px solid var(--ds-gray-200);
+    border-left: 4px solid var(--ds-primary-400);
+    border-radius: 12px;
+}
+
+.search-highlight {
+    background: rgba(99, 102, 241, 0.15);
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+/* ── 7. PAGINATION ───────────────────────────────────────── */
+.pagination-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--ds-gray-200);
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: var(--ds-gray-500);
+    font-weight: 600;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pg-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--ds-gray-200);
+    background: var(--ds-white);
+    color: var(--ds-gray-600);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pg-btn:hover:not(:disabled) {
+    border-color: var(--ds-primary-400);
+    color: var(--ds-primary-600);
+    background: var(--ds-primary-50);
+    transform: translateY(-1px);
+}
+
+.pg-btn.active {
+    background: var(--ds-primary-600);
+    border-color: var(--ds-primary-600);
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.pg-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+.pagination-controls.mini .pg-btn {
+    height: 32px;
+    min-width: 32px;
+    padding: 0 8px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+}
+
+.pg-btn i {
+    font-size: 0.8rem;
+}
+
+/* ── 8. RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .history-hero {
+        padding: 3rem 1.5rem 2rem;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        padding: 32px 24px;
+        width: 100%;
+        max-width: 320px;
+        border-radius: 24px;
+        margin: 0 auto;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .history-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-hero .gradient-text {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+
+    .stats-row {
+        max-width: 280px;
+        padding: 24px 20px;
+    }
+}

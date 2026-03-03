@@ -1,0 +1,94 @@
+/* ==========================================================
+   ACCOUNT.CSS — Account Settings Page Only
+   Requires: design-system.css → base.css → account.css
+   ========================================================== */
+
+/* ── 1. ACCOUNT PAGE HEADER ──────────────────────────────── */
+.account-header-bar {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.account-header-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ── 2. AVATAR ───────────────────────────────────────────── */
+.account-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--ds-gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ds-font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: var(--ds-shadow-neon);
+    flex-shrink: 0;
+}
+
+/* ── 3. ACCOUNT FORM GRID ────────────────────────────────── */
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+/* ── 4. ACTION BUTTONS ROW ───────────────────────────────── */
+.account-actions {
+    display: flex;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ── 5. DANGER ZONE ──────────────────────────────────────── */
+.danger-zone {
+    margin-top: 48px;
+    padding: 24px;
+    background: rgba(239, 68, 68, 0.03);
+    border: 1px solid rgba(239, 68, 68, 0.08);
+    border-radius: 20px;
+}
+
+.danger-zone h3 {
+    color: #ef4444;
+    font-family: var(--ds-font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.danger-zone p {
+    color: var(--ds-gray-500);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+/* ── 6. ACCOUNT STATUS TOAST ─────────────────────────────── */
+.account-status {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-height: 24px;
+}
+
+/* ── 7. RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 768px) {
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .account-actions {
+        flex-direction: column;
+    }
+}

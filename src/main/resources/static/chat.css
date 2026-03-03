@@ -1,0 +1,537 @@
+/* ==========================================================
+   CHAT.CSS — Chat Dashboard Only
+   Requires: design-system.css → base.css → chat.css
+   ========================================================== */
+
+/* ── 1. CHAT LAYOUT CONTAINER ────────────────────────────── */
+.main-container.chat-mode {
+    height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ── 2. SIDEBAR TOOL NAVIGATION ──────────────────────────── */
+.chat-sidebar {
+    width: 240px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(var(--ds-blur-md));
+    border-right: 1px solid var(--ds-gray-200);
+    padding: var(--ds-space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-6);
+}
+
+.sidebar-title {
+    font-family: var(--ds-font-display);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ds-gray-400);
+    font-weight: 800;
+}
+
+.action-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tool-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--ds-radius-lg);
+    cursor: pointer;
+    transition: all var(--ds-duration-base) var(--ds-ease-out);
+}
+
+.tool-card:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.tool-card.active {
+    background: #ffffff;
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.08);
+}
+
+.tool-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--ds-gray-100);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--ds-gray-500);
+    transition: all 0.4s var(--ds-ease-out);
+    flex-shrink: 0;
+}
+
+.tool-card.active .tool-icon {
+    background: var(--ds-gradient-primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.tool-title {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ds-gray-900);
+}
+
+.tool-desc {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--ds-gray-500);
+}
+
+/* ── 3. MAIN CHAT AREA ───────────────────────────────────── */
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: transparent;
+}
+
+.chat-output {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    /* Flexible height management - fills space and docks input to bottom */
+    min-height: 400px;
+}
+
+/* ── 4. WELCOME EXPERIENCE ───────────────────────────────── */
+.welcome-message {
+    margin: auto;
+    text-align: center;
+    max-width: 600px;
+    padding: 10vh 20px;
+    animation: ds-reveal 0.8s var(--ds-ease-out) forwards;
+}
+
+@keyframes ds-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-icon-wrap {
+    width: 80px;
+    height: 80px;
+    background: var(--ds-gradient-glow);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--ds-primary-500);
+    margin: 0 auto 24px;
+    box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.welcome-title {
+    font-family: var(--ds-font-display);
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: var(--ds-gray-500);
+}
+
+/* ── 5. CHAT INPUT SYSTEM ────────────────────────────────── */
+.chat-input-wrapper {
+    padding: 24px 1rem 40px;
+    position: relative;
+}
+
+.chat-input-container {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 28px;
+    padding: 10px 14px 10px 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s var(--ds-ease-out);
+    position: relative;
+}
+
+@keyframes chat-input-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 12px 50px rgba(124, 58, 237, 0.2);
+    }
+}
+
+.chat-input-container:focus-within {
+    border-color: #7c3aed;
+    animation: chat-input-glow 2s infinite ease-in-out;
+    transform: translateY(-1px);
+}
+
+.input-box {
+    flex: 1;
+}
+
+.auto-expand-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: var(--ds-font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ds-gray-900);
+    min-height: 24px;
+    max-height: 200px;
+    padding: 4px 0;
+}
+
+.input-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.char-counter {
+    font-size: 0.7rem;
+    color: var(--ds-gray-400);
+    font-weight: 600;
+    opacity: 0.6;
+    white-space: nowrap;
+}
+
+.send-btn-primary {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.send-btn-primary span {
+    display: none;
+}
+
+.send-btn-primary i {
+    font-size: 1rem;
+}
+
+.send-btn-primary:not(:disabled):hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+/* ── 6. AI RESPONSE BUBBLE PANEL ─────────────────────────── */
+.output-toolbar {
+    padding: 12px 0;
+    background: transparent;
+    border-bottom: 2px solid var(--ds-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.output-action-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--ds-primary-50);
+    border: 1px solid var(--ds-primary-100);
+    border-radius: 10px;
+    color: var(--ds-primary-600);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.output-copy-btn {
+    width: 38px;
+    height: 38px;
+    background: var(--ds-white);
+    border: 1px solid var(--ds-gray-200);
+    border-radius: 10px;
+    color: var(--ds-gray-500);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.output-copy-btn:hover {
+    background: var(--ds-gray-50);
+    color: var(--ds-primary-600);
+    border-color: var(--ds-primary-200);
+}
+
+.output-content {
+    padding: 24px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ds-gray-800);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.output-collapsed {
+    max-height: 300px;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.ai-response-content {
+    padding: 32px;
+    line-height: 1.8;
+}
+
+.ai-response-content h2,
+.ai-response-content h3 {
+    margin: 24px 0 12px;
+    font-family: var(--ds-font-display);
+    font-weight: 800;
+}
+
+.ai-response-content p {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+    color: var(--ds-gray-800);
+}
+
+/* ── 7. CHAT BUBBLES ─────────────────────────────────────── */
+/* (These styles are also defined inline in index.html <style>;
+    they are listed here for completeness and future migration.)  */
+
+/* ── 8. SIDEBAR OVERLAY & CLOSE CONTROLS ─────────────────── */
+/* .sidebar-header layout is handled in the mobile media query below */
+
+/* ── 9. SIDEBAR RESPONSIVE ───────────────────────────────── */
+@media (max-width: 1024px) {
+    .chat-sidebar {
+        width: 200px;
+        padding: var(--ds-space-4);
+    }
+
+    .welcome-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Sidebar slide-in on mobile */
+    .chat-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .chat-main {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        padding-top: 64px;
+        position: relative;
+    }
+
+    .chat-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 300px;
+        max-width: 85vw;
+        height: 100vh;
+        z-index: 2100;
+        background: var(--ds-white);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 0.4s ease,
+            visibility 0.4s;
+        padding-top: 80px;
+    }
+
+    .chat-sidebar.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 1999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .sidebar-close {
+        display: none;
+        background: var(--ds-gray-100);
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .chat-sidebar.active .sidebar-close {
+        display: flex !important;
+    }
+
+    /* Mobile sidebar toggle pill */
+    .sidebar-toggle-mobile {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        position: fixed;
+        top: 88px;
+        left: 16px;
+        z-index: 1500;
+        background: var(--ds-white);
+        border: 1px solid var(--ds-gray-200);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        box-shadow: var(--ds-shadow-sm);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    /* Chat area adjustments */
+    .chat-output {
+        padding: 1.25rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        height: calc(100vh - 220px) !important;
+        max-height: none !important;
+    }
+
+    /* Input adjustments */
+    .chat-input-wrapper {
+        padding: 0.75rem 8px 1.25rem;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--ds-gray-200);
+    }
+
+    .chat-input-container {
+        padding: 6px 10px 6px 14px;
+        border-radius: 20px;
+        gap: 8px;
+        min-height: 48px;
+    }
+
+    .send-btn-primary {
+        width: 38px;
+        height: 38px;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+
+    .auto-expand-textarea {
+        font-size: 0.95rem;
+        padding: 8px 0;
+    }
+
+    .chat-input-container {
+        gap: 6px;
+        padding-left: 12px !important;
+    }
+
+    .char-counter {
+        display: none;
+    }
+
+    .disclaimer-text {
+        font-size: 0.65rem;
+        padding: 0 10px;
+    }
+}

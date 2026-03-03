@@ -22,28 +22,24 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="design-system.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="chat.css">
 
     <style>
         /* Modern Chat Interface Styling - Minimalist Floating Design */
         .chat-output {
-            height: 70vh !important;
-            max-height: 70vh !important;
+            flex: 1 !important;
             overflow-y: auto !important;
             display: flex !important;
             flex-direction: column !important;
             padding: 2rem 1.5rem !important;
             background: rgba(255, 255, 255, 0.02) !important;
-            /* Extremely subtle glass tint */
             backdrop-filter: blur(15px) !important;
             scroll-behavior: smooth;
             border: none !important;
-            /* Borderless as requested */
             border-radius: 16px !important;
-            /* Specific radius requested */
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
-            /* Subtle soft floating shadow */
-            margin-bottom: 1.5rem;
+            margin-bottom: 0 !important;
         }
 
         /* Scrollbar for chat container */
@@ -61,7 +57,6 @@
             flex-direction: column !important;
             gap: 1.5rem !important;
             max-width: 768px;
-            /* Standard AI width */
             width: 100% !important;
             margin: 0 auto !important;
             padding-bottom: 2rem;
@@ -95,16 +90,26 @@
         }
 
         .bubble {
-            max-width: 80%;
+            max-width: 85%;
             padding: 1.15rem 1.5rem;
             border-radius: 20px;
-            /* Slightly more organic bubbles */
             line-height: 1.6;
             font-size: 0.95rem;
             position: relative;
             word-wrap: break-word;
             box-sizing: border-box;
             transition: all 0.2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .bubble {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .chat-output {
+                padding: 1rem !important;
+            }
         }
 
         .user-message .bubble {
@@ -122,7 +127,6 @@
 
         .ai-message .bubble {
             background: transparent;
-            /* Minimalist modern style */
             color: var(--ds-gray-900);
             box-shadow: none;
             border: none;
@@ -131,8 +135,6 @@
             font-size: 1.05rem;
             line-height: 1.7;
         }
-
-
 
         .bubble p {
             margin: 0 0 0.85rem 0;
@@ -163,8 +165,6 @@
             font-size: 0.85em;
             color: #7c3aed;
         }
-
-
 
         .bubble pre {
             background: #0f172a;
@@ -216,19 +216,14 @@
             margin: 1.5rem 0;
         }
 
-
-
         .bubble-footer {
             display: flex;
             justify-content: flex-start;
-            /* Align with text start */
             margin-top: 1.25rem;
             padding-top: 0.75rem;
             border-top: 1px solid rgba(0, 0, 0, 0.03);
             width: fit-content;
         }
-
-
 
         .copy-msg-btn {
             background: rgba(0, 0, 0, 0.03);
@@ -287,7 +282,6 @@
             }
         }
 
-        /* Layout spacing for components */
         .chat-input-wrapper {
             padding: 1rem 1rem 1.5rem !important;
             background: transparent !important;
@@ -321,6 +315,44 @@
             margin-top: 12px;
             opacity: 0.8;
             font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .chat-input-wrapper {
+                padding: 0.5rem 12px 1rem !important;
+                background: rgba(255, 255, 255, 0.98) !important;
+                backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(0, 0, 0, 0.08);
+            }
+
+            .chat-input-container {
+                border-radius: 20px !important;
+                padding: 6px 10px 6px 14px !important;
+                gap: 8px !important;
+                background: #f8fafc !important;
+                border: 1px solid rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .disclaimer-text {
+                font-size: 0.6rem;
+                margin-top: 6px;
+            }
+
+            .backdrop-orb {
+                opacity: 0.05 !important;
+                filter: blur(50px) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-input-wrapper {
+                padding: 0.5rem 8px 12px !important;
+            }
+
+            .chat-input-container {
+                padding-left: 12px !important;
+                gap: 6px !important;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -371,8 +403,7 @@
 
 
             <!-- Mobile Menu Toggle -->
-            <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
-                style="display: none;">
+            <button class="navbar-toggle" id="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span class="toggle-bar"></span>
                 <span class="toggle-bar"></span>
                 <span class="toggle-bar"></span>
@@ -384,14 +415,13 @@
     <!-- ========== FULL-SCREEN CHAT INTERFACE ========== -->
     <main class="main-container chat-mode" id="app-section">
 
-        <div class="chat-layout">
+        <div class="chat-layout" style="height: calc(100dvh - 72px);">
             <!-- Sidebar with Rich Tool Selection -->
             <div class="sidebar-overlay" id="sidebar-overlay"></div>
             <aside class="chat-sidebar" id="chat-sidebar">
                 <div class="sidebar-header">
                     <h2 class="sidebar-title">Model Tools</h2>
-                    <button class="sidebar-close" id="sidebar-close-btn" aria-label="Close tools"
-                        style="display: none;">
+                    <button class="sidebar-close" id="sidebar-close-btn" aria-label="Close tools">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -430,9 +460,7 @@
 
             <!-- Main Chat Interface -->
             <section class="chat-main">
-                <!-- Mobile Sidebar Toggle -->
-                <button class="sidebar-toggle-mobile" id="sidebar-toggle-mobile" aria-label="Show Model Tools"
-                    style="display: none;">
+                <button class="sidebar-toggle-mobile" id="sidebar-toggle-mobile" aria-label="Show Model Tools">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <span>Tools</span>
                 </button>

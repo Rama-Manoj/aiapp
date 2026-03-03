@@ -1,0 +1,158 @@
+/* ==========================================================
+   AUTH.CSS — Login & Signup Pages Only
+   Requires: design-system.css → base.css → auth.css
+   ========================================================== */
+
+/* ── 1. AUTH PAGE LAYOUT ─────────────────────────────────── */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 10;
+    position: relative;
+}
+
+/* ── 2. AUTH CARD ─────────────────────────────────────────── */
+.auth-card {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(var(--ds-blur-lg)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: var(--ds-radius-xl) !important;
+    padding: 48px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: var(--ds-shadow-premium) !important;
+}
+
+/* ── 3. AUTH LOGO ─────────────────────────────────────────── */
+.auth-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    text-decoration: none;
+    font-family: var(--ds-font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--ds-gray-900);
+}
+
+.auth-logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--ds-gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--ds-shadow-neon);
+}
+
+/* ── 4. AUTH HEADER ──────────────────────────────────────── */
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-title {
+    font-family: var(--ds-font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: var(--ds-gray-500);
+    font-size: 1rem;
+}
+
+/* ── 5. AUTH DIVIDER ─────────────────────────────────────── */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+    color: var(--ds-gray-400);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--ds-gray-200);
+}
+
+/* ── 6. AUTH FOOTER LINK ─────────────────────────────────── */
+.auth-prompt {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.95rem;
+    color: var(--ds-gray-500);
+}
+
+.auth-prompt a {
+    color: var(--ds-primary-600);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* ── 7. AUTH PAGE FOOTER ─────────────────────────────────── */
+.auth-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--ds-gray-400);
+}
+
+/* ── 8. ERROR BANNER ─────────────────────────────────────── */
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(244, 63, 94, 0.06);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+    border-radius: 12px;
+    color: #be123c;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.error-banner[hidden] {
+    display: none;
+}
+
+.error-banner-icon {
+    flex-shrink: 0;
+}
+
+/* ── 9. FIELD ERROR MESSAGE ──────────────────────────────── */
+.field-error {
+    display: block;
+    font-size: 0.8rem;
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 6px;
+    min-height: 20px;
+}
+
+/* ── 10. RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 32px 24px;
+        border-radius: 20px !important;
+    }
+}
