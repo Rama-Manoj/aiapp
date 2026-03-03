@@ -40,6 +40,8 @@
             border-radius: 16px !important;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
             margin-bottom: 0 !important;
+            min-height: 0 !important;
+            overscroll-behavior-y: contain;
         }
 
         /* Scrollbar for chat container */
@@ -319,10 +321,15 @@
 
         @media (max-width: 768px) {
             .chat-input-wrapper {
-                padding: 0.5rem 12px 1rem !important;
+                position: sticky;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 0.75rem 12px 1.25rem !important;
                 background: rgba(255, 255, 255, 0.98) !important;
                 backdrop-filter: blur(10px);
                 border-top: 1px solid rgba(0, 0, 0, 0.08);
+                z-index: 1000;
             }
 
             .chat-input-container {
@@ -545,6 +552,20 @@
 
                 if (!chatContainer || !submitBtn || !inputText) return;
 
+                // Update welcome name if user is logged in
+                const userStr = localStorage.getItem('user');
+                if (userStr) {
+                    try {
+                        const user = JSON.parse(userStr);
+                        const nameSpan = document.querySelector('.welcome-title .gradient-text');
+                        if (nameSpan && user.name) {
+                            nameSpan.textContent = user.name;
+                        }
+                    } catch (e) {
+                        console.error('Error parsing user for welcome message');
+                    }
+                }
+
                 // 1. CLONE INPUTS TO KILL LEGACY LISTENERS (from app.js)
                 const newInputText = inputText.cloneNode(true);
                 const newSubmitBtn = submitBtn.cloneNode(true);
@@ -693,9 +714,13 @@
                 }
 
                 function scrollToBottom() {
+                    // Use a slightly longer delay for mobile rendering and ensure we scroll to the actual bottom
                     setTimeout(() => {
-                        chatContainer.scrollTop = chatContainer.scrollHeight;
-                    }, 50);
+                        chatContainer.scrollTo({
+                            top: chatContainer.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
                 }
 
                 function showLoadingBubble() {

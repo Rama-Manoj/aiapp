@@ -122,7 +122,9 @@
     border-radius: 0;
     border: none;
     /* Flexible height management - fills space and docks input to bottom */
-    min-height: 400px;
+    min-height: 0;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
 }
 
 /* ── 4. WELCOME EXPERIENCE ───────────────────────────────── */
@@ -130,7 +132,7 @@
     margin: auto;
     text-align: center;
     max-width: 600px;
-    padding: 10vh 20px;
+    padding: 6vh 20px;
     animation: ds-reveal 0.8s var(--ds-ease-out) forwards;
 }
 
@@ -482,16 +484,20 @@
         padding: 1.25rem 1rem;
         width: 100%;
         max-width: 100%;
-        height: calc(100vh - 220px) !important;
-        max-height: none !important;
+        flex: 1 !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
     }
 
     /* Input adjustments */
     .chat-input-wrapper {
+        position: sticky;
+        bottom: 0;
         padding: 0.75rem 8px 1.25rem;
-        background: rgba(255, 255, 255, 0.8) !important;
+        background: rgba(255, 255, 255, 0.95) !important;
         backdrop-filter: blur(10px);
         border-top: 1px solid var(--ds-gray-200);
+        z-index: 100;
     }
 
     .chat-input-container {
