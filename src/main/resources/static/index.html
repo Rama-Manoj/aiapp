@@ -28,7 +28,7 @@
     <style>
         /* Modern Chat Interface Styling - Minimalist Floating Design */
         .chat-output {
-            flex: 1 !important;
+            flex: 1 1 0% !important;
             overflow-y: auto !important;
             display: flex !important;
             flex-direction: column !important;
@@ -321,15 +321,16 @@
 
         @media (max-width: 768px) {
             .chat-input-wrapper {
-                position: sticky;
-                bottom: 0;
-                left: 0;
-                right: 0;
+                position: relative;
+                bottom: auto;
+                left: auto;
+                right: auto;
                 padding: 0.75rem 12px 1.25rem !important;
                 background: rgba(255, 255, 255, 0.98) !important;
                 backdrop-filter: blur(10px);
                 border-top: 1px solid rgba(0, 0, 0, 0.08);
                 z-index: 1000;
+                flex-shrink: 0;
             }
 
             .chat-input-container {

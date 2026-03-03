@@ -6,14 +6,17 @@
 /* ── 1. CHAT LAYOUT CONTAINER ────────────────────────────── */
 .main-container.chat-mode {
     height: calc(100vh - 72px);
+    height: calc(100dvh - 72px);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .chat-layout {
     display: flex;
     flex: 1;
     overflow: hidden;
+    height: 100%;
 }
 
 /* ── 2. SIDEBAR TOOL NAVIGATION ──────────────────────────── */
@@ -121,8 +124,8 @@
     box-shadow: none;
     border-radius: 0;
     border: none;
-    /* Flexible height management - fills space and docks input to bottom */
     min-height: 0;
+    flex-basis: 0;
     overscroll-behavior-y: contain;
     scroll-behavior: smooth;
 }
@@ -392,6 +395,8 @@
         padding-left: 0;
         padding-top: 64px;
         position: relative;
+        height: 100%;
+        overflow: hidden;
     }
 
     .chat-sidebar {
@@ -484,20 +489,21 @@
         padding: 1.25rem 1rem;
         width: 100%;
         max-width: 100%;
-        flex: 1 !important;
+        flex: 1 1 0% !important;
         min-height: 0 !important;
         overflow-y: auto !important;
     }
 
     /* Input adjustments */
     .chat-input-wrapper {
-        position: sticky;
-        bottom: 0;
+        position: relative;
+        bottom: auto;
         padding: 0.75rem 8px 1.25rem;
         background: rgba(255, 255, 255, 0.95) !important;
         backdrop-filter: blur(10px);
         border-top: 1px solid var(--ds-gray-200);
         z-index: 100;
+        flex-shrink: 0;
     }
 
     .chat-input-container {
