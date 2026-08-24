@@ -82,7 +82,8 @@ public class GeminiService {
         return switch (action.toUpperCase()) {
             case "SUMMARIZE" -> "Summarize this text:\n" + text;
             case "REWRITE" -> "Rewrite this professionally:\n" + text;
-            case "EXPLAIN" -> "Explain this clearly:\n" + text;
+            // case "EXPLAIN" -> "Explain this clearly:\n" + text;
+            case "EXPLAIN" ->  "Answer the user's question accurately. If the question asks for current, latest, recent, today's, or up-to-date information, use web search. Keep the answer concise and include sources when web search is used.\n\n"    + text;
             default -> "Explain this clearly:\n" + text;
         };
     }
