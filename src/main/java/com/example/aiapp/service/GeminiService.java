@@ -116,6 +116,7 @@ public class GeminiService {
 
         } catch (Exception e) {
             // return "AI service unavailable. Please try again later.";
+            e.printStackTrace();
             throw new RuntimeException("Groq API error: " + e.getMessage(), e);
         }
     }
