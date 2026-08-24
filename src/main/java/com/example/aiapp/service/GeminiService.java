@@ -94,7 +94,7 @@ public class GeminiService {
         RestTemplate restTemplate = new RestTemplate();
     
         Map<String, Object> body = Map.of(
-                "model", "openai/gpt-oss-20b",
+                "model", "groq/compound-mini",
                 "messages", List.of(
                         Map.of(
                                 "role", "user",
