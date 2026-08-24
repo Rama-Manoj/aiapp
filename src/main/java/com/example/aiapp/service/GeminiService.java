@@ -489,4 +489,3 @@ public class GeminiService {
         }
     }
 }
-```
