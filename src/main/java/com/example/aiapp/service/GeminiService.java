@@ -92,32 +92,47 @@ public class GeminiService {
      */
     private String callGroqApi(String prompt) {
         RestTemplate restTemplate = new RestTemplate();
-
+    
         Map<String, Object> body = Map.of(
-                "model", "llama-3.1-8b-instant",
-                "messages", List.of(Map.of("role", "user", "content", prompt)));
-
+                "model", "openai/gpt-oss-20b",
+                "messages", List.of(
+                        Map.of(
+                                "role", "user",
+                                "content", prompt
+                        )
+                )
+        );
+    
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
-
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
-
+    
+        HttpEntity<Map<String, Object>> entity =
+                new HttpEntity<>(body, headers);
+    
         try {
-            Map<?, ?> response = restTemplate.postForObject(GROQ_URL, entity, Map.class);
-
+            Map<?, ?> response =
+                    restTemplate.postForObject(
+                            GROQ_URL,
+                            entity,
+                            Map.class
+                    );
+    
             if (response == null) {
                 return "AI service returned an empty response.";
             }
-
+    
             List<?> choices = (List<?>) response.get("choices");
-            Map<?, ?> message = (Map<?, ?>) ((Map<?, ?>) choices.get(0)).get("message");
+    
+            Map<?, ?> message =
+                    (Map<?, ?>) ((Map<?, ?>) choices.get(0)).get("message");
+    
             return message.get("content").toString();
-
+    
         } catch (Exception e) {
-            // return "AI service unavailable. Please try again later.";
             e.printStackTrace();
-            throw new RuntimeException("Groq API error: " + e.getMessage(), e);
+            return "AI service unavailable. Please try again later.";
         }
     }
+    
 }
