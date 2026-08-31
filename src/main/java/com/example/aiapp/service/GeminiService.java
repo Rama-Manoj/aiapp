@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentConfig;
 import com.google.genai.types.GenerateContentResponse;
+import com.google.genai.types.ThinkingConfig;
 import com.google.genai.types.GoogleSearch;
 import com.google.genai.types.Tool;
 
@@ -332,7 +333,10 @@ public class GeminiService {
             GenerateContentConfig.Builder configBuilder =
                     GenerateContentConfig
                             .builder()
-                            .maxOutputTokens(16384);
+                            .maxOutputTokens(4096)
+                            .thinkingConfig(ThinkingConfig.builder()
+                                .thinkingLevel("low")
+                                .build());
 
             /*
              * Enable Google Search grounding only when
